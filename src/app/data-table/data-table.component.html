@@ -1,0 +1,25 @@
+<table class="u-full-width">
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Age</th>
+      <th>Genre</th>
+      <th>Ville</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="dataUser.length > 0">
+    <tr *ngFor="let user of dataUser">
+      <td>{{ user.name.title }}</td>
+      <td>{{ user.name.first }}</td>
+      <td>{{ user.name.last }}</td>
+      <td>{{ user.dob.age }}</td>
+      <td>{{ user.gender }}</td>
+      <td>{{ user.location.city }}</td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="dataUser.length === 0">
+    No data
+  </tbody>
+</table>
