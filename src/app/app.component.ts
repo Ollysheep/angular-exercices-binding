@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { DataService } from "./data.service";
+import { User } from "./models/user-interface";
 
 @Component({
   selector: "my-app",
@@ -7,24 +8,32 @@ import { DataService } from "./data.service";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  searchText: string = "";
-  filterType: string = "";
+  users!: User[];
+  usersInit!: User[];
 
   constructor(private dataService: DataService) {}
 
+  ngOnInit() {
+    this.users = [...this.dataService.getUsersData()];
+    this.usersInit = [...this.users];
+  }
+
+  searchText: string = "";
+  filterType: string = "first";
+
   onSearchTextChange(searchText: string) {
     this.searchText = searchText;
+    this.FilteredUsers();
   }
 
   onFilterTypeChange(filterType: string) {
     this.filterType = filterType;
+    this.FilteredUsers();
   }
 
-  get FilteredUsers() {
-    const allUsers = this.dataService.getUsersData();
-
+  FilteredUsers() {
     // if (this.filterType === "title") {
-    return allUsers.filter((user) =>
+    this.users = this.usersInit.filter((user) =>
       user.name[this.filterType]
         .toLowerCase()
         .includes(this.searchText.toLowerCase())

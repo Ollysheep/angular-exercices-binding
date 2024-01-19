@@ -9,8 +9,6 @@ export class SearchBarComponent {
   @Output() searchTextChange = new EventEmitter<string>();
 
   onSearchTextChange(event: any) {
-    const searchText = event.target.value;
-
-    this.searchTextChange.emit(searchText);
+    this.searchTextChange.emit(event.target.value);
   }
 }

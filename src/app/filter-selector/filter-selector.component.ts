@@ -9,8 +9,6 @@ export class FilterSelectorComponent {
   @Output() filterTypeChange = new EventEmitter<string>();
 
   onFilterTypeChange(event: any) {
-    const filterType = event.target.value;
-
-    this.filterTypeChange.emit(filterType);
+    this.filterTypeChange.emit(event.target.value);
   }
 }
